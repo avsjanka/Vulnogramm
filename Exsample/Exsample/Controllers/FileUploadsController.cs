@@ -57,8 +57,4 @@ public class FileUploadsController : Controller
     }
     
     
-   /* public IActionResult Index()
-    {
-        return View();
-    }*/
 }

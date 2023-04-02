@@ -1,14 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using Exsample.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<Context>(options =>
+    options.UseNpgsql($"Host=localhost;  Port=5432; Database=Vulnogramm; Username=admin; Password=admin"));
+
+
 var app = builder.Build();
 app.UseStaticFiles();
+Context context;
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
