@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System;
-using Exsample.ImageMethods;
 using Exsample.Models;
+using Exsample.ImageMethods;
 namespace Exsample.Controllers;
+using ImageMagick;
 
 
 [Route("api/[controller]")]
@@ -37,8 +38,13 @@ public class FileUploadsController : Controller
                     Console.WriteLine($"{method}");
                     if (method == 1)
                     {
-                        Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ file.file.FileName);
+                        Magick magick = new Magick(_webHostEnvironment.WebRootPath + "uploads/" + file.file.FileName);
                         magick.Recoloring("qqqqq");
+                    }
+                    if (method == 2)
+                    {
+                        Magick magick = new Magick(_webHostEnvironment.WebRootPath + "uploads/" + file.file.FileName);
+                        magick.Watermark("qqqqq");
                     }
                     fileStream.Flush();
                     return "Uploaded";
