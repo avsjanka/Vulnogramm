@@ -14,14 +14,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color:rgb(18,32,45);
   min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(100px + 2vmin);
-  color: white;
+  color:#9ec4d4;
 }
 
 .App-link {
@@ -38,13 +38,14 @@
 }
 
 .button{
-  background-color: #5C6AC4;
+  display: flex;
+  background-color: #3d7a8d;
   border: none;
-  color: midnightblue;
+  color: #b5c8cc;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 2rem;
   margin: 4px 2px;
   cursor: pointer;
   padding: 16px 32px;
@@ -59,4 +60,44 @@
   margin: 10px 10px 10px 10px;
 
   background-color: chartreuse;
+}
+
+INPUT[type="text"], textarea
+{
+  background-color:#244056;
+  background: #244056;
+  padding: 10px;
+  margin: 10px;
+  width: 60%;
+  height:50px;
+  border-radius: 12px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: large;
+  border:0;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.19);
+}
+
+INPUT[type="password"], textarea
+{
+  background-color: #244056;
+  background: #244056;
+  padding: 10px;
+  margin: 10px;
+  width: 60%;
+  height:50px;
+  border-radius: 12px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: large;
+  border:0;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.19);
+}
+
+
+
+.logwin
+{
+  border-radius: 12px;
+  padding-top: 5%;
+  width: 33%;
+  padding-left: 40%;
 }

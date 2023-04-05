@@ -13,24 +13,26 @@ export class Home extends React.Component {
 
   async submit(e) {    
       e.preventDefault();    
-      //const url = `https://localhost:7180/api/FileUploads?method=1`;  
-      const url = `https://localhost:7180/api/FileUploads`;  
-      const file = new FormData();    
-      file.append('file', e.target.files[0]);    
-      let method = 2;
+      //const url = `https://localhost:7180/api/Post?method=1`;  
+      const url = `https://localhost:7180/api/Post`;  
+      const file = new FormData();
+      const config = 
+      {    
+         headers: 
+         {    
+           'content-type': 'multipart/form-data',  
+           Owner :1,
+           method : 1,
+           sign :"hello",
+           subscript : "aa"
+         },    
+       };   
+      file.append('file', e.target.files[0]);
+      file.append('Owner', 1);
       file.append('method', 1);
-     const config = 
-     {    
-        headers: 
-        {    
-          'content-type': 'multipart/form-data',  
-          'accept': 'text/plain',
-        },    
-      };   
-      return axios.post(url, {
-        file : e.target.files[0],
-       data: 1,
-      },config).then(response => console.log(response.status));    
+      file.append('sign', "hello");
+      file.append('subscript', "aa");    
+      return axios.post(url,file,config).then(response => console.log(response.status));    
   }
 
   setFile(e) {    
