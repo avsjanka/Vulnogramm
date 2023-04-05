@@ -73,3 +73,10 @@
 /home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/dotnet-aspnet-codegenerator.dll
 /home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/NuGet.Frameworks.dll
 /home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/System.Xml.XPath.XmlDocument.dll
+/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll
+/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
+/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll
