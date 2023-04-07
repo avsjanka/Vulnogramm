@@ -8,7 +8,7 @@ namespace Exsample
         public const string ISSUER = "MyAuthServer"; 
         public const string AUDIENCE = "VulnogrammClient"; 
         const string KEY = "VulnogrammVulogramm";
-        public const int LIFETIME = 1; 
+        public const int LIFETIME = 16; 
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Exsample.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230402053734_AddLookupTables")]
+    [Migration("20230406172745_AddLookupTables")]
     partial class AddLookupTables
     {
         /// <inheritdoc />
@@ -26,14 +26,15 @@ namespace Exsample.Migrations
 
             modelBuilder.Entity("Exsample.Models.Post", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
-                    b.Property<int>("Owner")
-                        .HasColumnType("integer");
+                    b.Property<string>("Owner")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("PhotoForAll")
                         .IsRequired()
@@ -43,18 +44,25 @@ namespace Exsample.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Subscript")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("ID", "Owner")
+                        .IsUnique();
 
                     b.ToTable("Post");
                 });
 
             modelBuilder.Entity("Exsample.Models.User", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -65,6 +73,9 @@ namespace Exsample.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ID", "Login")
+                        .IsUnique();
 
                     b.ToTable("User");
                 });

@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System;
-using Exsample.ImageMethods;
+using Exsample.Data;
 using Exsample.Models;
+using Exsample.ImageMethods;
 namespace Exsample.Controllers;
 
 [Route("api/[controller]")]
@@ -19,7 +20,8 @@ public class PostController
     [HttpPost]
     public string Post(NewPost newPost)
     {
-        Console.WriteLine($"{newPost.method}");
+        Context context = new Context();
+        newPost.photo = newPost.photo.Substring(newPost.photo.IndexOf(',')+1);
         try
         {
             if (newPost.photo.Length > 0 )
@@ -33,8 +35,9 @@ public class PostController
                 string type = "";
                 if (newPost.photo.StartsWith("iVBORw0KGgo"))
                     type = ".png";
-                using (FileStream fileStream = System.IO.File.Create(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type))
+                if (newPost.method == 0)
                 {
+                    File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
                 }
                 if (newPost.method == 1)
                 {
@@ -42,6 +45,19 @@ public class PostController
                     Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type);
                     magick.Recoloring(newPost.sign);
                 }
+                if (newPost.method == 2)
+                {
+                    File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
+                }
+                
+                context.Post.Add(new Post
+                {
+                    Owner = newPost.Owner,
+                    Subscript = newPost.subscript,
+                    PhotoForOwner = newPost.photo,
+                    PhotoForAll = newPost.photo,
+                });
+                context.SaveChanges();
                 return "Uploaded";   
             }
             else

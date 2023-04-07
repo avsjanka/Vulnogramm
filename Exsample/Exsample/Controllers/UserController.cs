@@ -34,7 +34,7 @@ public class UserController : Controller
             }
             else
             {
-                return "Not add user";
+                return "Not add user";        
             }
         }
         catch (Exception e)
@@ -66,7 +66,7 @@ public class UserController : Controller
         var response = new
         {
             access_token = encodedJwt,
-            username = identity.Name
+            login = identity.Name
         };
         return Json(response);
     }

@@ -21,9 +21,12 @@ public class Context: DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder){
         modelBuilder.Entity<User>()
-            .Property(p => p.ID)
-            .ValueGeneratedOnAdd();
+            .Property(p => p.Id).ValueGeneratedOnAdd();
+        modelBuilder.Entity<Post>()
+            .Property(p => p.Id).ValueGeneratedOnAdd();
     }
+
+    
     public DbSet<User> User { get; set; }
     public DbSet<Post> Post { get; set; }
     

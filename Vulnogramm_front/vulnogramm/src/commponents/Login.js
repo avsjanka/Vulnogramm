@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import axios from "axios";
 import PropTypes from 'prop-types';
 
+
+
 async function loginUser(credentials) {
     return fetch('https://localhost:7180/authentication', {
       method: 'POST',
@@ -28,23 +30,18 @@ export default function Login({setToken}){
           password
         });
         
-        let data = status({
-            login,
-            password
-          });
-        console.log((await data).valueOf);
-        localStorage.setItem('jwt',data);
-        setToken(token);
+       
+          let myObject = JSON.stringify(token);
+          if( myObject === '{"errorText":"Invalid username or password."}')
+          {
+            token = null;
+          }
+          
+        localStorage.setItem('jwt',myObject);
+        setToken(myObject);
     }
     
-    function status(credentials)
-    {
-        const url = 'https://localhost:7180/authentication';
-        let data = axios.post(url, credentials).then(response => response.status);
-       // console.log(JSON.parse(data));
-        return  data;
-    }
-    
+   
 
     function registrate()
     {
@@ -58,10 +55,6 @@ export default function Login({setToken}){
 
     return (
             <div>
-                 <header className="App-header">
-                    <div>Vulngramm</div>
-                </header>
-                <br></br>
                 <div className="logwin">
                     <div>
                         <input id="login" type="text" className="TextPlace"  onChange={e => setLogin(e.target.value)}></input>
@@ -73,7 +66,7 @@ export default function Login({setToken}){
                         <button type="submit" id = "submit" onClick ={handleSubmit} hidden>Login</button>
                         <label for = "submit" className="button">Login</label>
                         <button type="submit" id = "reg" hidden onClick={registrate} >Registrate</button>
-                        <label for = "reg" className="button" >Registrate</label>
+                        <label  for = "reg" className="reg" >Registrate</label>
                     </div>
                 </div>
             </div>
