@@ -1,11 +1,12 @@
 import React, { useState} from 'react';
 import Post from './Post';
 import Login from './Login';
+import FeedMaker from './FeedMaker';
 
 export default function Feed() {
   const [showModal, setShowModal] = useState(false);
   const [token, setToken] = useState();
-  
+
   const toggleShowModal = () => {
     setShowModal(!showModal);
   };
@@ -27,7 +28,8 @@ export default function Feed() {
         <Post show={showModal} close_button_click={toggleShowModal} />
         <button id="new_post" onClick={toggleShowModal} hidden></button>
         <label for="new_post" className="button"> New post</label>
-        <button onClick={logout}>Logout</button>
+        <button id="logout" onClick={logout}>Logout</button>
+        <FeedMaker/>
     </div>
   );
 }

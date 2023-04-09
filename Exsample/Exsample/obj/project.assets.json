@@ -9020,19 +9020,19 @@
     ]
   },
   "packageFolders": {
-    "/home/avsjanka/.nuget/packages/": {}
+    "/home/redundunt/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/Exsample.csproj",
+      "projectUniqueName": "/home/redundunt/Desktop/wert/Vulnogramm/Exsample/Exsample/Exsample.csproj",
       "projectName": "Exsample",
-      "projectPath": "/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/Exsample.csproj",
-      "packagesPath": "/home/avsjanka/.nuget/packages/",
-      "outputPath": "/home/avsjanka/Desktop/Projects/CTF/Exsample/Exsample/obj/",
+      "projectPath": "/home/redundunt/Desktop/wert/Vulnogramm/Exsample/Exsample/Exsample.csproj",
+      "packagesPath": "/home/redundunt/.nuget/packages/",
+      "outputPath": "/home/redundunt/Desktop/wert/Vulnogramm/Exsample/Exsample/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/avsjanka/.nuget/NuGet/NuGet.Config"
+        "/home/redundunt/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -9111,8 +9111,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -9124,7 +9123,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.407/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.113/RuntimeIdentifierGraph.json"
       }
     }
   }

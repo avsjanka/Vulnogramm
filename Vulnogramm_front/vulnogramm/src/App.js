@@ -5,8 +5,6 @@ import Login from './commponents/Login';
 import Feed from './commponents/Feed';
 
 function App() {
-
-
   return (
     <div className="App">
 

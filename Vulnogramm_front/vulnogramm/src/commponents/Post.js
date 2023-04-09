@@ -2,6 +2,8 @@ import React,{useState} from "react";
 import Home from "./Upload";
 import axios from "axios";
 import './Post.css';
+import logFeed from "./FeedMaker";
+import FeedMaker from "./FeedMaker";
 
 
 export default function Post({show, close_button_click})
@@ -52,16 +54,25 @@ export default function Post({show, close_button_click})
         <div className="body">
           <img></img>
           <div>
-              <input id="subscript" type="text" className="text" maxLength="32" onChange={e => setSign(e.target.value)} ></input>
+              <label>Sign:
+              <input id="sign" type="text" className="text" maxLength="32" onChange={e => setSign(e.target.value)} ></input>
+                </label>
           </div>
             <br></br>
           <div>
-              <input id="sign" type="text" className="text" maxLength="32" onChange={e => setSubscript(e.target.value)}></input>
+            <label>Subscript:
+              <input id="subscript" type="text" className="text" maxLength="32" onChange={e => setSubscript(e.target.value)}></input>
+            </label>
           </div>
           <form>
+            <p>Choose Method:</p>
+            <label>1
             <input type="radio" name="sign" data-method='0'></input>
+              </label><label>2
             <input type="radio" name="sign" data-method='1'></input>
+            </label><label>3
             <input type="radio" name="sign" data-method='2'></input>
+            </label>
           </form>
         </div>
         <div className="footer">

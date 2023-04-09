@@ -4,6 +4,7 @@ namespace Exsample.Models;
 using Microsoft.EntityFrameworkCore;
 [Index(nameof(Id), nameof(Owner), IsUnique = true)]
 
+[Serializable]
 public class Post
 {
     public string Owner { get; set; }

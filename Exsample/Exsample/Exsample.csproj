@@ -28,6 +28,7 @@
 
     <ItemGroup>
       <Folder Include="uploads" />
+      <Folder Include="Watermark" />
       <Folder Include="wwwRoot" />
     </ItemGroup>
 
