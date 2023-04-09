@@ -41,7 +41,7 @@
 }
 
 .button{
-  display: flex;
+
   background-color:#263a56;
   border: none;
   color: #b5c8cc;
@@ -50,6 +50,7 @@
   display: inline-block;
   font-size: 2rem;
   margin: 4px 2px;
+
   cursor: pointer;
   padding: 16px 32px;
   border-radius: 4px;
@@ -148,12 +149,13 @@ INPUT[type="password"], textarea
 
 .feed
 {
-  background-color:#244056;
+  background-color:#34546b;
   margin-left: 15rem;
   margin-right: 15rem;
   margin-top: 35rem;
   height: 2500rem;
   width: 86.5rem;
+  border-radius: 4px;
   box-shadow: 0 0 0 0.2rem rgba(76,121,144, 0.15);
 }
 
@@ -167,4 +169,55 @@ INPUT[type="password"], textarea
   margin: auto;
   margin-top: 40rem;
   margin-bottom: 40rem;
+}
+
+
+.logout_style{
+  display: flex;
+  justify-content: space-around;
+  background-color:#263a56;
+  border: none;
+  color: #b5c8cc;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2rem;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  margin-right: 24rem;
+  cursor: pointer;
+  padding: 16px 32px;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(38, 58, 86,0.2), 0 6px 20px 0 rgba(38, 58, 86,0.19);
+}
+
+.btn_post{
+  display: flex;
+  justify-content: space-around;
+  background-color:rgb(38, 58, 86);
+  border: none;
+  color: #b5c8cc;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2rem;
+  margin-left: 20rem;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  padding: 16px 32px;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(38, 58, 86,0.2), 0 6px 20px 0 rgba(38, 58, 86,0.19);
+}
+
+#bar{
+  background-color: #3b5c7c;
+  border-radius: 2px;
+}
+
+.feed_label{
+  font-family: sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #9ec4d4;
 }

@@ -8,7 +8,7 @@ namespace Exsample.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PostController
+public class PostController : Controller 
 {
     public static IWebHostEnvironment _webHostEnvironment;
 
@@ -33,21 +33,34 @@ public class PostController
                 }
 
                 string type = "";
+                string for_all = "";
                 if (newPost.photo.StartsWith("iVBORw0KGgo"))
                     type = ".png";
                 if (newPost.method == 0)
                 {
-                    File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
+                    System.IO.File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
+                    Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type);
+                    magick.TheLastofUS(newPost.sign);
+                    newPost.photo = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
+                    magick.Watermark(); 
+                    for_all = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
                 }
                 if (newPost.method == 1)
                 {
-                    File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
+                    System.IO.File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
                     Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type);
                     magick.Recoloring(newPost.sign);
+                    magick.Watermark(); 
+                    for_all = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
                 }
                 if (newPost.method == 2)
                 {
-                    File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
+                    System.IO.File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
+                    Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type);
+                    magick.NewText(newPost.sign);
+                    newPost.photo = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
+                    magick.Watermark(); 
+                    for_all = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
                 }
                 
                 context.Post.Add(new Post
@@ -55,7 +68,7 @@ public class PostController
                     Owner = newPost.Owner,
                     Subscript = newPost.subscript,
                     PhotoForOwner = newPost.photo,
-                    PhotoForAll = newPost.photo,
+                    PhotoForAll = for_all,
                 });
                 context.SaveChanges();
                 return "Uploaded";   
@@ -72,5 +85,12 @@ public class PostController
         }
     }
     
+    [HttpPost("/feed")]
+    public IActionResult AddFeed()
+    {
+        Context context = new Context();
+        var posts = context.Post.AsQueryable().ToList();
+        return  Json(posts);
+    }
     
 }

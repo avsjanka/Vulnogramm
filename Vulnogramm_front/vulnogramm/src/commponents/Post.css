@@ -31,7 +31,7 @@
     left: 0px;
     background-color: rgba(107, 114, 128, 0.5);
     z-index: 9;
-
+    height: 100%;
     width: 100%;
     min-height: 100vh;
   }
