@@ -10,8 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Context>(options =>
-    options.UseNpgsql($"Host=localhost;  Port=5432; Database=Vulnogramm; Username=admin; Password=admin"));
-
+    options.UseNpgsql($"Host=localhost; Port=5432; Database=Vulnogramm; Username=admin; Password=admin"));
 
 var app = builder.Build();
 app.UseStaticFiles();
