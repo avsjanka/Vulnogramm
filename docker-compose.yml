@@ -24,5 +24,7 @@ services:
     build: ./Vulnogramm_front/vulnogramm/.
     volumes:
       - .:/frontend
+    expose:
+      - 3000
     ports:
       - 3000:3000
