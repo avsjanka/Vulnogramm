@@ -1,17 +1,20 @@
-
-import './App.css';
-import Home from './commponents/Upload';
+import React, { useState } from 'react';
+import './css/App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './commponents/Login';
+import Feed from './commponents/Feed';
 
 function App() {
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <div>Vulngramm</div>
-      </header>
-      <br></br>
-      <div className='pic_place'>
-          <Home></Home>
-      </div>
+
+      <BrowserRouter>
+        <Routes>
+          <Route extract path="/feed" element={<Feed />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
