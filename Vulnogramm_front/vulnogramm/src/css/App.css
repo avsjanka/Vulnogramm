@@ -221,3 +221,29 @@ INPUT[type="password"], textarea
   font-weight: 400;
   color: #9ec4d4;
 }
+.dialog{
+  display: flex;
+  justify-content: space-around;
+  background-color:rgb(38, 58, 86);
+  border: none;
+  color: #b5c8cc;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2rem;
+
+  margin-top: 2px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  padding: 16px 32px;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(38, 58, 86,0.2), 0 6px 20px 0 rgba(38, 58, 86,0.19);
+}
+.small{
+  height: 650px;
+  width: 650px;
+}
+.image{
+  height: 650px;
+  width: 650px;
+}

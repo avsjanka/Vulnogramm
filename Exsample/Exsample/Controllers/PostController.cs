@@ -26,49 +26,38 @@ public class PostController : Controller
         {
             if (newPost.photo.Length > 0 )
             {
-                string path = _webHostEnvironment.WebRootPath + "\\uploads\\";
-                if (!Directory.Exists(path))
+                
+                if (!Directory.Exists(_webHostEnvironment.WebRootPath+"uploads/"))
                 {
                     Directory.CreateDirectory(_webHostEnvironment.WebRootPath+"uploads");
                 }
-
-                string type = "";
-                string for_all = "";
-                if (newPost.photo.StartsWith("iVBORw0KGgo"))
-                    type = ".png";
+                string path = _webHostEnvironment.WebRootPath + "uploads/" + Path.GetRandomFileName() + ".png";
                 if (newPost.method == 0)
                 {
-                    System.IO.File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
-                    Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type);
+                    System.IO.File.WriteAllBytes(path,Convert.FromBase64String(newPost.photo));
+                    Magick magick = new Magick(path);
                     magick.TheLastofUS(newPost.sign);
-                    newPost.photo = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
-                    magick.Watermark(); 
-                    for_all = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
+                    newPost.photo = path;
                 }
                 if (newPost.method == 1)
                 {
-                    System.IO.File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
-                    Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type);
-                    magick.Recoloring(newPost.sign);
-                    magick.Watermark(); 
-                    for_all = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
+                    System.IO.File.WriteAllBytes(path,Convert.FromBase64String(newPost.photo));
+                    Magick magick = new Magick(path);
+                    magick.Fibi(newPost.sign);
+                    newPost.photo = path;
                 }
                 if (newPost.method == 2)
                 {
-                    System.IO.File.WriteAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+".png",Convert.FromBase64String(newPost.photo));
-                    Magick magick = new Magick(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type);
+                    System.IO.File.WriteAllBytes(path,Convert.FromBase64String(newPost.photo));
+                    Magick magick = new Magick(path);
                     magick.NewText(newPost.sign);
-                    newPost.photo = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
-                    magick.Watermark(); 
-                    for_all = Convert.ToBase64String( System.IO.File.ReadAllBytes(_webHostEnvironment.WebRootPath+"uploads/"+ newPost.Owner+type));
+                    newPost.photo = path;
                 }
-                
                 context.Post.Add(new Post
                 {
                     Owner = newPost.Owner,
                     Subscript = newPost.subscript,
-                    PhotoForOwner = newPost.photo,
-                    PhotoForAll = for_all,
+                    PhotoForAll = newPost.photo,
                 });
                 context.SaveChanges();
                 return "Uploaded";   
@@ -90,7 +79,25 @@ public class PostController : Controller
     {
         Context context = new Context();
         var posts = context.Post.AsQueryable().ToList();
+        foreach (var post in posts )
+        {
+            string path = post.PhotoForAll ;
+            Magick magick = new Magick(path);
+            string new_path = magick.Watermark(); 
+            post.PhotoForAll= Convert.ToBase64String(System.IO.File.ReadAllBytes(new_path));
+            //System.IO.File.Delete(new_path);
+        }
         return  Json(posts);
+    }
+    [HttpPost("/yourpost")]
+    public IActionResult ShowPost(ShowPost showpost)
+    {
+        Context context = new Context();
+        var post = context.Post.AsQueryable().Where(t => t.Id == showpost.id).ToList()  .FirstOrDefault(t => t.Id == showpost.id 
+            && t.Owner == showpost.owner);
+        if (post != null)
+            post.PhotoForAll = Convert.ToBase64String(System.IO.File.ReadAllBytes(post.PhotoForAll));
+        return Json(post);
     }
     
 }

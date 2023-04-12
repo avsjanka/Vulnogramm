@@ -11,7 +11,11 @@ export default class FeedMaker extends React.Component {
         this.addImage =this.addImage.bind(this);
         this.logFeed = this.logFeed.bind(this);
     }
-
+    componentDidMount() {
+        setInterval(()=>{this.logFeed();
+            }, 5000
+        );
+    }
 
     async logFeed() {
         function makeFeed() {
@@ -25,13 +29,14 @@ export default class FeedMaker extends React.Component {
                 .then(data => data.json());
         }
         const AllPosts = await makeFeed();
-        console.log(AllPosts);
         let newPosts = [];
+        this.setState( {fullTable: []}, function (){console.log("clean success")});
         for (let i = AllPosts.length; i--;)
         {
             newPosts = newPosts.concat(<Image photoData={AllPosts[i]}/>);
         }
         this.setState( {fullTable: newPosts}, function (){console.log("add success")});
+        return newPosts;
     }
     
     async addImage(img) {
@@ -40,9 +45,8 @@ export default class FeedMaker extends React.Component {
     };
     render() {
         return (
-            <div className="FeedMaker">
+            <div className="divFeed">
                 <Table Table={this.state.fullTable} />
-                <button id="seeFeed" onClick={this.logFeed}>feed</button>
             </div>
         );
     }

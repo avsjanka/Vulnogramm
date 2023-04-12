@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import Post from './Post';
 import Login from './Login';
+import Validate from './Validate';
 import FeedMaker from './FeedMaker';
 
 export default function Feed() {
@@ -8,6 +9,10 @@ export default function Feed() {
   const [token, setToken] = useState();
 
   const toggleShowModal = () => {
+    if(!Validate())
+    {
+      document.getElementById('logout').click();
+    }
     setShowModal(!showModal);
   };
 
@@ -35,7 +40,7 @@ export default function Feed() {
         <label for="new_post" className="btn_post"> New post</label>
         <br></br>
       </div>
-      <FeedMaker/>
+      <FeedMaker id={"FeedMaker"}/>
     </div>
   );
 }

@@ -26,8 +26,7 @@ public class Context: DbContext
             .Property(p => p.Id).ValueGeneratedOnAdd();
     }
 
-    
     public DbSet<User> User { get; set; }
     public DbSet<Post> Post { get; set; }
-    
+
 }

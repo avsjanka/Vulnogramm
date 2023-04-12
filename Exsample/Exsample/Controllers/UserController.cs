@@ -71,6 +71,29 @@ public class UserController : Controller
         return Json(response);
     }
     
+    [HttpPost("/validate")]
+    public IActionResult Valid(Token authToken) 
+    {
+        var handler = new JwtSecurityTokenHandler();
+        var ValidateParams =new TokenValidationParameters
+        {
+            IssuerSigningKey =  new SymmetricSecurityKey(AuthOptions.GetSymmetricSecurityKey().Key),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ClockSkew = TimeSpan.Zero
+        };
+        SecurityToken validateToken = null;
+        try
+        {
+            validateToken = handler.ReadToken(authToken.token);
+            handler.ValidateToken(authToken.token, ValidateParams, out validateToken);
+        }
+        catch(SecurityTokenException)
+        {
+            return BadRequest(new { errorText = "False" }); 
+        }
+        return  Ok(Convert.ToString(validateToken !=null));
+    }
 
     private ClaimsIdentity GetIdentity(string login, string password)
     {

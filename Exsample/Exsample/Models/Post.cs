@@ -7,8 +7,7 @@ using Microsoft.EntityFrameworkCore;
 public class Post
 {
     public string Owner { get; set; }
-    public int Id { get; set; }
+    public Int64 Id { get; set; }
     public string Subscript { get; set; }
-    public string PhotoForOwner { get; set; }
     public string PhotoForAll { get; set; }
 }

@@ -1,10 +1,7 @@
 import React,{useState} from "react";
 import Home from "./Upload";
-import axios from "axios";
 import './Post.css';
-import FeedMaker from "./FeedMaker";
-
-
+import Validate from "./Validate";
 export default function Post({show, close_button_click})
 {
   const [photo,setPhoto] = useState();
@@ -30,12 +27,17 @@ export default function Post({show, close_button_click})
 
   function new_post()
   {
+    if(!Validate())
+    {
+      document.getElementById('logout').click();
+    }
     let owner = localStorage.getItem('jwt');
     owner = JSON.parse(owner);
     owner =  owner.login;
     let checked = document.querySelector('input[name="sign"]:checked');
     let method = 0; 
-    if( checked ){ method = checked.dataset.method - '0'; }   
+    if( checked ){ method = checked.dataset.method - '0'; }
+    console.log(1);
     const post = newPost({
       photo,
       owner,
@@ -43,7 +45,6 @@ export default function Post({show, close_button_click})
       sign,
       subscript
     });
-
   }
 
   return(

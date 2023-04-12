@@ -4,9 +4,9 @@ import Image from "./ImageDialog";
 export class Table extends Component{
     render() {
         return(
-            <main>
-                {this.props.Table.map(el =>(<Image key={el.id} item={el} />))}
-            </main>
+            <div>
+                {this.props.Table.map(el =>(<Image key={el.props.photoData.id} item={el} />))}
+            </div>
         )
     }
 }
