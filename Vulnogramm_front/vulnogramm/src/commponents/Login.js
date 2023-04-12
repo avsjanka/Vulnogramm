@@ -29,10 +29,13 @@ export default function Login({setToken}){
         
        
           let myObject = JSON.stringify(token);
-          if( myObject === '{"errorText":"Invalid username or password."}')
+          if( myObject === '{"errorText":"Invalid username or password."}' || myObject.startsWith('{"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred."') )
           {
-            token = null;
+            myObject = null;
           }
+          
+        localStorage.setItem('jwt',myObject);
+        setToken(myObject);
           
         localStorage.setItem('jwt',myObject);
         setToken(myObject);
