@@ -1,8 +1,11 @@
 namespace Exsample.Models;
+using Microsoft.EntityFrameworkCore;
+
+[Index(nameof(Id), nameof(Login), IsUnique = true)]
 
 public class User
 {
-    public int ID { get; set; }
+    public uint Id { get; set; }
     public string Login { get; set; }
     public string Password { get; set; }
 }

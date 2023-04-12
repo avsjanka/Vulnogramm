@@ -18,7 +18,15 @@ public class Context: DbContext
     {
         optionsBuilder.UseNpgsql("Host=localhost;  Port=5432; Database=Vulnogramm; Username=admin; Password=admin");
     }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder){
+        modelBuilder.Entity<User>()
+            .Property(p => p.Id).ValueGeneratedOnAdd();
+        modelBuilder.Entity<Post>()
+            .Property(p => p.Id).ValueGeneratedOnAdd();
+    }
+
     public DbSet<User> User { get; set; }
     public DbSet<Post> Post { get; set; }
-    
+
 }
