@@ -83,9 +83,16 @@ public class PostController : Controller
         {
             string path = post.PhotoForAll ;
             Magick magick = new Magick(path);
-            string new_path = magick.Watermark(); 
-            post.PhotoForAll= Convert.ToBase64String(System.IO.File.ReadAllBytes(new_path));
-            //System.IO.File.Delete(new_path);
+            string newPath = magick.Watermark();
+            while (!System.IO.File.Exists(newPath))
+            {
+                Thread.Sleep(100);
+            }
+            var file = System.IO.File.ReadAllBytes(newPath);
+            var base64File = Convert.ToBase64String(file);
+            post.PhotoForAll= base64File;
+            base64File = null;
+            System.IO.File.Delete(newPath);
         }
         return  Json(posts);
     }
