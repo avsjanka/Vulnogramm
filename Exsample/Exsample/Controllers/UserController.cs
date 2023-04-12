@@ -98,6 +98,8 @@ public class UserController : Controller
     private ClaimsIdentity GetIdentity(string login, string password)
     {
         Context context = new Context();
+         if (login == null || password == null)
+            return null;
         var user = context.User.AsQueryable().Where(t => t.Login == login).ToList()
             .FirstOrDefault(x => x.Login == login && x.Password == password);
         if (user != null)
