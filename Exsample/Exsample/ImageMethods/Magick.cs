@@ -114,9 +114,10 @@ public class Magick
                         var episod= pc.GetPixel(x, y);
                         string first = "000" + Convert.ToString(episod.GetChannel(0),2);
                         string second = "000" + Convert.ToString(episod.GetChannel(1), 2);
-                        string _in = "";
+                         string _in = "";
                         _in += your_virus[i]; 
                         _in += your_virus[i + 1];
+                        _in += "0";
                         if (first.EndsWith(_in) == false)
                         {
                             first = first.Substring(0, first.Length - 3);
