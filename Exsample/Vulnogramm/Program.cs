@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<Context>(options =>
-    options.UseNpgsql($"Host=localhost;  Port=5432; Database=Vulnogramm; Username=admin; Password=admin"));
+    options.UseNpgsql($"Host=db;  Port=5432; Database=Vulnogramm; Username=admin; Password=admin"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
     { 
         options.RequireHttpsMetadata = false;

@@ -86,7 +86,7 @@ public class Magick
             Height = 250, 
             Width = 250
         };
-        settings.Font ="Bebas Neue.ttf";
+        settings.Font ="Bebas_Neue.ttf";
         var pixel = result.GetPixels().GetPixel(0, 0);
         MagickColor color = new MagickColor(pixel.GetChannel(0),pixel.GetChannel(1),pixel.GetChannel(2));
         color = make_color(color);

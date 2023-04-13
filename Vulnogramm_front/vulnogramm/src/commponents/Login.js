@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 
 async function loginUser(credentials) {
-    return fetch('https://localhost:7180/backend/authentication', {
+    return fetch(`${window.location.origin}/backend/authentication`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -41,7 +41,7 @@ export default function Login({setToken}){
     
     function registrate()
     {
-        const url = `https://localhost:7180/backend/adduser`;
+        const url = `${window.location.origin}/backend/adduser`;
         return axios.post(url,{
             login,
             password

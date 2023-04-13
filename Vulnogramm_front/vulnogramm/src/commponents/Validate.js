@@ -2,7 +2,7 @@
 
 //token = token.substring(token.indexOf(':')+1, token.indexOf(','));
 async function validateToken(credentials) {
-    return fetch('https://localhost:7180/backend/validate', {
+    return fetch(`${window.location.origin}/backend/validate`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

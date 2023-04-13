@@ -12,5 +12,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
 WORKDIR /app
 COPY --from=build-env /code/out .
+COPY Watermark ./Watermark
+COPY Bebas_Neue.ttf . 
 
-ENTRYPOINT ["dotnet", "Exsample.dll"]
+ENTRYPOINT ["dotnet", "Vulnogramm.dll"]
