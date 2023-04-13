@@ -9,7 +9,7 @@ export default function Post({show, close_button_click})
   const [subscript, setSubscript] = useState();
 
  function newPost(credentials) {
-    return fetch('https://localhost:7180/api/Post', {
+    return fetch('https://localhost:7180/backend/post', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -19,7 +19,7 @@ export default class FeedMaker extends React.Component {
 
     async logFeed() {
         function makeFeed() {
-            return fetch('https://localhost:7180/feed', {
+            return fetch('https://localhost:7180/backend/feed', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

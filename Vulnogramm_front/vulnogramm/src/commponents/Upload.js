@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import FileSaver from 'file-saver';
-import  handleChangeFile from 'file-saver';
-import  handleFile from 'file-saver';
+import React from 'react';
+
 
 export default function Home ({setPhoto}){
 
-
-
-  handleFile = (e) => {      
-    const content = e.target.result;
-    console.log(content);
+  function handleFile(e){      
+    let content = e.target.result;
     setPhoto(content);
   }
     
-  handleChangeFile = (file) => {
+  function handleChangeFile(file){
       let fileData = new FileReader();
       fileData.onloadend = handleFile;
       fileData.readAsDataURL(file); 

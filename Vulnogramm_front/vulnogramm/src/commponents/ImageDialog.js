@@ -3,7 +3,7 @@ import { saveAs} from 'file-saver';
 import Validate from './Validate';
 
 async function showPost(credentials) {
-    return fetch('https://localhost:7180/yourpost', {
+    return fetch('https://localhost:7180/backend/yourpost', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
